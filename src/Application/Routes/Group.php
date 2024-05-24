@@ -8,19 +8,19 @@ use EugeneErg\DDD\Application\Middleware\Middleware;
 
 class Group implements RouteGroupInterface
 {
+    public readonly Middleware $middleware;
+
     public function __construct(
         public readonly Routes $children,
-        public readonly ?string $uri,
-        public readonly Middleware $middleware,
+        public readonly ?string $uri = null,
+        ?Middleware $middleware = null,
     ) {
+        $this->middleware = $middleware ?? new Middleware();
     }
 
-    public static function new(
-        Routes $children,
-        ?string $uri = null,
-        ?Middleware $middleware = null,
-    ): static {
-        return new self($children, static::uriToPattern($uri), $middleware ?? new Middleware());
+    public static function new(Routes $children, ?string $uri = null, ?Middleware $middleware = null): static
+    {
+        return new self($children, static::uriToPattern($uri), $middleware);
     }
 
     public function getMiddleware(): Middleware

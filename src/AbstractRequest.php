@@ -11,5 +11,4 @@ abstract readonly class AbstractRequest implements RequestInterface
     ) {
     }
 
-
 }
