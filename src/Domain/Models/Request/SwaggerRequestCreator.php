@@ -7,6 +7,7 @@ namespace EugeneErg\DDD\Domain\Models\Request;
 use EugeneErg\DDD\Application\Requests\HeadersInterface;
 use EugeneErg\DDD\Application\Requests\RequestInterface;
 use EugeneErg\DDD\Domain\Models\Request\Collections\MapperCallbacks;
+use EugeneErg\DDD\Domain\Models\Swagger\RequestBody;
 use Psr\Http\Message\RequestInterface as PsrRequestInterface;
 use ReflectionClass;
 use ReflectionIntersectionType;
@@ -15,26 +16,27 @@ use ReflectionParameter;
 use ReflectionUnionType;
 use Throwable;
 
-readonly class RequestMapper
+readonly class SwaggerRequestCreator
 {
-    private MapperCallbacks $customMappers;
-
-    public function __construct(
-        ?MapperCallbacks $customMappers = null,
-    ) {
-        $this->customMappers = $customMappers ?? new MapperCallbacks();
-    }
-
     /**
      * @template Request of RequestInterface
-     * @param PsrRequestInterface $from
-     * @param class-string<Request> $to
-     * @return Request&RequestInterface
+     * @param class-string<Request> $requestClass
+     * @return array{}
      */
-    public function requestFromPsr(PsrRequestInterface $from, string $to): RequestInterface
+    public function requestFromPsr(string $requestClass): RequestBody
     {
-        /** @var RequestInterface $to */
-        $reflectionClass = new ReflectionClass($to);
+        /** @var RequestInterface $requestClass */
+        $reflectionClass = new ReflectionClass($requestClass);
+        $docComment = $reflectionClass->getDocComment();
+
+        return new RequestBody(
+            $docComment ===  false ? null : $docComment,
+            true,
+            '',
+        );
+
+        $requestClass
+
 
         return new $to(
             $this->createHeaders($reflectionClass, $from->getHeaders()),

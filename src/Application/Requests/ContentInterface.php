@@ -6,5 +6,5 @@ namespace EugeneErg\DDD\Application\Requests;
 
 interface ContentInterface
 {
-
+    public static function getType(): string;
 }
