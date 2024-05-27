@@ -2,40 +2,39 @@
 
 declare(strict_types=1);
 
-namespace EugeneErg\DDD\Domain\Models\Swagger\Schema;
+namespace EugeneErg\DDD\Domain\Models\Swagger\Schema\Type\Number;
 
-final readonly class NumberSchema extends AbstractSchema
+use EugeneErg\DDD\Domain\Models\Swagger\Schema\Access;
+use EugeneErg\DDD\Domain\Models\Swagger\Schema\ExternalDocs;
+use EugeneErg\DDD\Domain\Models\Swagger\Schema\Type\Abstract\AbstractOptions;
+
+abstract readonly class AbstractNumberOptions extends AbstractOptions
 {
     public function __construct(
-        public bool $exclusiveMinimum = false,
-        public bool $exclusiveMaximum = false,
-        public ?float $minimum = null,
-        public ?float $maximum = null,
-        public ?float $multipleOf = null,
+        public ?Format $format = null,
         public ?float $default = null,
         public ?float $example = null,
-        public ?NumberFormat $format = null,
+        ?Schemas $anyOf = null,
+        ?Schemas $allOf = null,
+        ?Schemas $oneOf = null,
         bool $nullable = false,
         ?string $title = null,
         ?string $description = null,
         Access $access = Access::ReadAndWrite,
         bool $deprecated = false,
-        ?Schemas $anyOf = null,
-        ?Schemas $allOf = null,
-        ?Schemas $oneOf = null,
-        ?AbstractSchema $not = null,
+        ?self $not = null,
         ?Discriminator $discriminator = null,
         ?ExternalDocs $externalDocs = null,
     ) {
         parent::__construct(
+            $anyOf ?? new Schemas(),
+            $allOf ?? new Schemas(),
+            $oneOf ?? new Schemas(),
             $nullable,
             $title,
             $description,
             $access,
             $deprecated,
-            $anyOf,
-            $allOf,
-            $oneOf,
             $not,
             $discriminator,
             $externalDocs,

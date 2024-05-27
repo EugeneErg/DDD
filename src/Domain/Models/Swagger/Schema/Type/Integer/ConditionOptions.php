@@ -2,9 +2,12 @@
 
 declare(strict_types=1);
 
-namespace EugeneErg\DDD\Domain\Models\Swagger\Schema;
+namespace EugeneErg\DDD\Domain\Models\Swagger\Schema\Type\Integer;
 
-final readonly class IntegerSchema extends AbstractSchema
+use EugeneErg\DDD\Domain\Models\Swagger\Schema\Access;
+use EugeneErg\DDD\Domain\Models\Swagger\Schema\ExternalDocs;
+
+final readonly class ConditionOptions extends AbstractIntegerOptions
 {
     public function __construct(
         public bool $exclusiveMinimum = false,
@@ -12,30 +15,33 @@ final readonly class IntegerSchema extends AbstractSchema
         public ?int $minimum = null,
         public ?int $maximum = null,
         public ?int $multipleOf = null,
-        public ?int $default = null,
-        public ?int $example = null,
-        public ?NumberFormat $format = null,
+        ?Format $format = null,
+        ?int $default = null,
+        ?int $example = null,
+        ?Schemas $anyOf = null,
+        ?Schemas $allOf = null,
+        ?Schemas $oneOf = null,
         bool $nullable = false,
         ?string $title = null,
         ?string $description = null,
         Access $access = Access::ReadAndWrite,
         bool $deprecated = false,
-        ?Schemas $anyOf = null,
-        ?Schemas $allOf = null,
-        ?Schemas $oneOf = null,
-        ?AbstractSchema $not = null,
+        ?self $not = null,
         ?Discriminator $discriminator = null,
         ?ExternalDocs $externalDocs = null,
     ) {
         parent::__construct(
+            $format,
+            $default,
+            $example,
+            $anyOf,
+            $allOf,
+            $oneOf,
             $nullable,
             $title,
             $description,
             $access,
             $deprecated,
-            $anyOf,
-            $allOf,
-            $oneOf,
             $not,
             $discriminator,
             $externalDocs,
