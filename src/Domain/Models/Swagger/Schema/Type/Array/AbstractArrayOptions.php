@@ -11,8 +11,8 @@ use EugeneErg\DDD\Domain\Models\Swagger\Schema\Type\Abstract\AbstractOptions;
 abstract readonly class AbstractArrayOptions extends AbstractOptions
 {
     public function __construct(
-        public ?int $default = null,
-        public ?int $example = null,
+        public ?SwaggerArray $default = null,
+        public ?SwaggerArray $example = null,
         ?Schemas $anyOf = null,
         ?Schemas $allOf = null,
         ?Schemas $oneOf = null,

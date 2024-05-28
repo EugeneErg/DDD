@@ -13,8 +13,8 @@ abstract readonly class EnumOptions extends AbstractObjectOptions
     public function __construct(
         public Objects $enum,
         bool $additionalProperties = true,
-        ?int $default = null,
-        ?int $example = null,
+        ?SwaggerObject $default = null,
+        ?SwaggerObject $example = null,
         ?Schemas $anyOf = null,
         ?Schemas $allOf = null,
         ?Schemas $oneOf = null,

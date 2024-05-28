@@ -12,8 +12,8 @@ abstract readonly class AbstractObjectOptions extends AbstractOptions
 {
     public function __construct(
         public bool $additionalProperties = true,
-        public ?object $default = null,
-        public ?object $example = null,
+        public ?SwaggerObject $default = null,
+        public ?SwaggerObject $example = null,
         ?Schemas $anyOf = null,
         ?Schemas $allOf = null,
         ?Schemas $oneOf = null,
@@ -23,8 +23,8 @@ abstract readonly class AbstractObjectOptions extends AbstractOptions
         Access $access = Access::ReadAndWrite,
         bool $deprecated = false,
         ?self $not = null,
-        ?Discriminator $discriminator = null,
         ?ExternalDocs $externalDocs = null,
+        ?Discriminator $discriminator = null,
     ) {
         parent::__construct(
             $anyOf ?? new Schemas(),

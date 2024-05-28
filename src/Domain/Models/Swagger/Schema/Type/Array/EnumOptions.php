@@ -12,8 +12,8 @@ abstract readonly class EnumOptions extends AbstractArrayOptions
 {
     public function __construct(
         public Arrays $enum,
-        ?int $default = null,
-        ?int $example = null,
+        ?SwaggerArray $default = null,
+        ?SwaggerArray $example = null,
         ?Schemas $anyOf = null,
         ?Schemas $allOf = null,
         ?Schemas $oneOf = null,
