@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace EugeneErg\DDD\Domain\Models\Swagger;
 
+use EugeneErg\DDD\Domain\Models\Swagger\Schema\Type\Abstract\OptionsInterface;
+
 final readonly class Content
 {
     public Examples $examples;
     public Encodings $encoding;
 
     public function __construct(
-        public mixed $schema = null,
+        public OptionsInterface $schema,
         null|Examples|Example $examples = null,
         Encodings $encoding = null,
     ) {

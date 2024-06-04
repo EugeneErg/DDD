@@ -6,7 +6,8 @@ namespace EugeneErg\DDD\Domain\Models\Swagger;
 
 final readonly class Response
 {
-    public function __construct()
-    {
+    public function __construct(
+        
+    ) {
     }
 }
