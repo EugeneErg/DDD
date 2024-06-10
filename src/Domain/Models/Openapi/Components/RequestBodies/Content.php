@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi\Components\RequestBodies;
 
-use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Schema;
+use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\AbstractSchema;
 use EugeneErg\DDD\Domain\Models\Openapi\Types\Value;
 
 final readonly class Content
@@ -13,7 +13,7 @@ final readonly class Content
     public Encodings $encoding;
 
     public function __construct(
-        public Schema $schema,
+        public AbstractSchema $schema,
         null|Examples|Value $examples = null,
         Encodings $encoding = null,
     ) {

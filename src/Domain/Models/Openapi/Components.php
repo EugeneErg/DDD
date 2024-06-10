@@ -7,10 +7,10 @@ namespace EugeneErg\DDD\Domain\Models\Openapi;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Callbacks;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Responses;
-use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Headers;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Links;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\RequestBodies;
+use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Untyped\Schemas;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\SecuritySchemes;
 
 final readonly class Components

@@ -6,7 +6,7 @@ namespace EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\Abstract;
 
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\In;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\RequestBodies\Examples;
-use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Schema;
+use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\AbstractSchema;
 use EugeneErg\DDD\Domain\Models\Openapi\Types\Value;
 
 abstract readonly class AbstractSchemaParameter extends AbstractParameter
@@ -16,7 +16,7 @@ abstract readonly class AbstractSchemaParameter extends AbstractParameter
     public function __construct(
         ?string $name,
         In $in,
-        public Schema $schema,
+        public AbstractSchema $schema,
         public bool $explode = true,
         ?string $description = null,
         ?bool $required = false,
