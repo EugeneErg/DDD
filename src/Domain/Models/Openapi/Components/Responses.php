@@ -15,4 +15,15 @@ final readonly class Responses
     {
         $this->items = $responses;
     }
+
+    public function toArray(): array
+    {
+        $result = [];
+
+        foreach ($this->items as $name => $item) {
+            $result[$name] = $item->toArray();
+        }
+
+        return $result;
+    }
 }

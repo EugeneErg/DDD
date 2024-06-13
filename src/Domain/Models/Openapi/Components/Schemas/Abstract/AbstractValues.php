@@ -15,4 +15,15 @@ abstract readonly class AbstractValues
     {
         $this->items = $items;
     }
+
+    public function toArray(): array
+    {
+        $result = [];
+
+        foreach ($this->items as $item) {
+            $result[] = $item instanceof Value ? $item->toArray() : $item;
+        }
+
+        return $result;
+    }
 }

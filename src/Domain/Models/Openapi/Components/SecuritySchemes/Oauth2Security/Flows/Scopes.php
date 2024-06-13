@@ -6,11 +6,11 @@ namespace EugeneErg\DDD\Domain\Models\Openapi\Components\SecuritySchemes\Oauth2S
 
 final readonly class Scopes
 {
-    /** @var array<string, string> */
+    /** @var array<string, Scope> */
     public array $items;
 
-    public function __construct(string ...$strings)
+    public function __construct(Scope ...$scopes)
     {
-        $this->items = $strings;
+        $this->items = $scopes;
     }
 }

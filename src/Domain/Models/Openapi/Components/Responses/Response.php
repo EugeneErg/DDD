@@ -24,4 +24,23 @@ final readonly class Response
         $this->content = $content ?? new Contents();
         $this->links = $links ?? new Links();
     }
+
+    public function toArray(): array
+    {
+        $result = ['description' => $this->description];
+
+        if ($this->headers->items !== []) {
+            $result['headers'] = $this->headers->toArray();
+        }
+
+        if ($this->content->items !== []) {
+            $result['content'] = $this->content->toArray();
+        }
+
+        if ($this->links->items !== []) {
+            $result['links'] = $this->links->toArray();
+        }
+
+        return $result;
+    }
 }

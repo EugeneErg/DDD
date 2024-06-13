@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi\Components\SecuritySchemes\Oauth2Security;
 
+use EugeneErg\DDD\Domain\Models\Openapi\Components\SecuritySchemes\Oauth2Security\Flows\AbstractFlow;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\SecuritySchemes\Oauth2Security\Flows\AuthorizationCodeFlow;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\SecuritySchemes\Oauth2Security\Flows\ClientCredentialsFlow;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\SecuritySchemes\Oauth2Security\Flows\ImplicitFlow;
@@ -11,12 +12,16 @@ use EugeneErg\DDD\Domain\Models\Openapi\Components\SecuritySchemes\Oauth2Securit
 
 final readonly class Flows
 {
+    /** @var array<string, AbstractFlow> */
+    public array $items;
+
     private function __construct(
         public ?ImplicitFlow $implicit = null,
         public ?PasswordFlow $password = null,
         public ?ClientCredentialsFlow $clientCredentials = null,
         public ?AuthorizationCodeFlow $authorizationCode = null,
     ) {
+        $this->items[] = array_filter(func_get_args(), static fn (?AbstractFlow $flow) => $flow !== null);
     }
 
     public static function createImplicit(

@@ -12,4 +12,28 @@ final readonly class Contacts
         public ?string $email = null,
     ) {
     }
+
+    public function isEmpty(): bool
+    {
+        return $this->name === null && $this->url === null && $this->email === null;
+    }
+
+    public function toArray(): array
+    {
+        $result = [];
+
+        if ($this->name !== null) {
+            $result['name'] = $this->name;
+        }
+
+        if ($this->url !== null) {
+            $result['url'] = $this->url;
+        }
+
+        if ($this->email !== null) {
+            $result['email'] = $this->email;
+        }
+
+        return $result;
+    }
 }

@@ -16,4 +16,15 @@ final readonly class Headers
     {
         $this->items = $headers;
     }
+
+    public function toArray(): array
+    {
+        $result = [];
+
+        foreach ($this->items as $name => $item) {
+            $result[$name] = $item->toArray();
+        }
+
+        return $result;
+    }
 }

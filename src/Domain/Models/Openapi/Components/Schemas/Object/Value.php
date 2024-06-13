@@ -18,4 +18,15 @@ final readonly class Value extends AbstractValue
         parent::__construct(new Values(...$value));
         $this->items = $this->value->items;
     }
+
+    public function toArray(): array
+    {
+        $result = [];
+
+        foreach ($this->items as $name => $item) {
+            $result[$name] = $item instanceof AbstractValues ? $item->toArray() : $item;
+        }
+
+        return $result;
+    }
 }

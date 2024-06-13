@@ -11,4 +11,15 @@ final readonly class ExternalDocs
         public ?string $description,
     ) {
     }
+
+    public function toArray(): array
+    {
+        $result = ['url' => $this->url];
+
+        if ($this->description !== null) {
+            $result['description'] = $this->description;
+        }
+
+        return $result;
+    }
 }

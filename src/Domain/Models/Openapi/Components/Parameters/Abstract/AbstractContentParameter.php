@@ -20,4 +20,12 @@ abstract readonly class AbstractContentParameter extends AbstractParameter
     ) {
         parent::__construct($name, $in, $description, $required, $deprecated);
     }
+
+    public function toArray(): array
+    {
+        return array_merge(parent::toArray(), [
+            'mimeType' => $this->mimeType,
+            'content' => $this->content->toArray(),
+        ]);
+    }
 }

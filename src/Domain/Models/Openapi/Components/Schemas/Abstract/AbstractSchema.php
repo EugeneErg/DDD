@@ -20,4 +20,43 @@ abstract readonly class AbstractSchema
         public ?AbstractValue $default = null,
     ) {
     }
+
+    public function toArray(): array
+    {
+        $result = [];
+
+        if ($this->type !== null) {
+            $result['type'] = $this->type;
+        }
+
+        if ($this->title !== null) {
+            $result['title'] = $this->title;
+        }
+
+        if ($this->description !== null) {
+            $result['description'] = $this->description;
+        }
+
+        if ($this->nullable) {
+            $result['nullable'] = $this->nullable;
+        }
+
+        if ($this->access !== null) {
+            $result[$this->access->value] = true;
+        }
+
+        if ($this->externalDocs !== null) {
+            $result['externalDocs'] = $this->externalDocs;
+        }
+
+        if ($this->xml !== null) {
+            $result['xml'] = $this->xml->toArray();
+        }
+
+        if ($this->default !== null) {
+            $result['default'] = $this->default->toArray();
+        }
+
+        return $result;
+    }
 }

@@ -16,7 +16,7 @@ final readonly class Link
     public Parameters|Parameter $requestBody;
 
     public function __construct(
-        public Id|Ref $operation,
+        public Id|Ref $operation,//todo check it
         ?Parameters $parameters = null,
         null|Parameters|Parameter $requestBody = null,
         public ?string $description = null,

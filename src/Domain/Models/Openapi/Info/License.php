@@ -11,4 +11,17 @@ final readonly class License
         public ?string $url = null,
     ) {
     }
+
+    public function toArray(): array
+    {
+        $result = [
+            'name' => $this->name,
+        ];
+
+        if ($this->url !== null) {
+            $result['url'] = $this->url;
+        }
+
+        return $result;
+    }
 }

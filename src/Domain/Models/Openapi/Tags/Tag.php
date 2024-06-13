@@ -14,4 +14,19 @@ final readonly class Tag
         public ?ExternalDocs $externalDocs = null,
     ) {
     }
+
+    public function toArray(): array
+    {
+        $result = ['name' => $this->name];
+
+        if ($this->description !== null) {
+            $result['description'] = $this->description;
+        }
+
+        if ($this->externalDocs !== null) {
+            $result['externalDocs'] = $this->externalDocs->toArray();
+        }
+
+        return $result;
+    }
 }

@@ -15,4 +15,14 @@ final readonly class Servers
     {
         $this->items = $servers;
     }
+
+    public function toArray(): array
+    {$result = [];
+
+        foreach ($this->items as $server) {
+            $result[] = $server->toArray();
+        }
+
+        return $result;
+    }
 }

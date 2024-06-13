@@ -21,4 +21,30 @@ final readonly class Info
     ) {
         $this->contacts = $contacts ?? new Contacts();
     }
+
+    public function toArray(): array
+    {
+        $result = [
+            'title' => $this->title,
+            'version' => $this->version,
+        ];
+
+        if ($this->description !== null) {
+            $result['description'] = $this->description;
+        }
+
+        if (!$this->contacts->isEmpty()) {
+            $result['contacts'] = $this->contacts->toArray();
+        }
+
+        if ($this->license !== null) {
+            $result['license'] = $this->license->toArray();
+        }
+
+        if ($this->termsOfService !== null) {
+            $result['termsOfService'] = $this->termsOfService;
+        }
+
+        return $result;
+    }
 }

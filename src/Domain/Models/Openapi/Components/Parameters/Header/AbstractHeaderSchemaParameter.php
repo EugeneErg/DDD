@@ -6,17 +6,17 @@ namespace EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\Header;
 
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\Abstract\AbstractSchemaParameter;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\In;
-use EugeneErg\DDD\Domain\Models\Openapi\Components\RequestBodies\Examples;
-use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\AbstractSchema;
-use EugeneErg\DDD\Domain\Models\Openapi\Types\Value;
+use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractSchema;
+use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractValue;
+use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractValues;
 
 abstract readonly class AbstractHeaderSchemaParameter extends AbstractSchemaParameter
 {
     public function __construct(
         ?string $name,
-        public AbstractSchema $schema,
+        AbstractSchema $schema,
         bool $explode = true,
-        null|Examples|Value $examples = null,
+        null|AbstractValues|AbstractValue $examples = null,
         ?string $description = null,
         bool $required = false,
         bool $deprecated = false,

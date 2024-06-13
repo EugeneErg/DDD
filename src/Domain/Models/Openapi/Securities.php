@@ -15,4 +15,15 @@ final readonly class Securities
     {
         $this->items = $securities;
     }
+
+    public function toArray(Components\SecuritySchemes $securitySchemes): array
+    {
+        $result = [];
+
+        foreach ($this->items as $schema) {
+            $result[] = $schema->toArray($securitySchemes);
+        }
+
+        return $result;
+    }
 }

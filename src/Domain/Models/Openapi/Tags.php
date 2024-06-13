@@ -15,4 +15,15 @@ final readonly class Tags
     {
         $this->items = $tags;
     }
+
+    public function toArray(): array
+    {
+        $result = [];
+
+        foreach ($this->items as $tag) {
+            $result[] = $tag->toArray();
+        }
+
+        return $result;
+    }
 }

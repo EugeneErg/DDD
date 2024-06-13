@@ -15,4 +15,15 @@ final readonly class Paths
     {
         $this->items = $paths;
     }
+
+    public function toArray(Components\SecuritySchemes $securitySchemes): array
+    {
+        $result = [];
+
+        foreach ($this->items as $path) {
+            $result[] = $path->toArray($securitySchemes);
+        }
+
+        return $result;
+    }
 }

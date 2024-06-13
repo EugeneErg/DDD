@@ -16,4 +16,26 @@ abstract readonly class AbstractParameter
         public ?bool $deprecated = false,
     ) {
     }
+
+    public function toArray(): array
+    {
+        $result = [
+            'in' => $this->in->value,
+            'required' => $this->required,
+        ];
+
+        if ($this->name !== null) {
+            $result['name'] = $this->name;
+        }
+
+        if ($this->description !== null) {
+            $result['description'] = $this->description;
+        }
+
+        if ($this->description) {
+            $result['description'] = $this->description;
+        }
+
+        return $result;
+    }
 }

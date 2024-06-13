@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi\Components\Headers;
 
-use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\Header\AbstractHeaderContentParameter;
+use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\Abstract\AbstractContentParameter;
+use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\In;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\RequestBodies\Content;
 
-final readonly class HeaderContentParameter extends AbstractHeaderContentParameter
+final readonly class HeaderContentParameter extends AbstractContentParameter
 {
     public function __construct(
         string $mimeType,
@@ -16,6 +17,6 @@ final readonly class HeaderContentParameter extends AbstractHeaderContentParamet
         bool $required = false,
         bool $deprecated = false,
     ) {
-        parent::__construct(null, $mimeType, $content, $description, $required, $deprecated);
+        parent::__construct(null, In::Header, $mimeType, $content, $description, $required, $deprecated);
     }
 }
