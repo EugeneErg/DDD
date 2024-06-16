@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract;
 
@@ -45,7 +45,7 @@ abstract readonly class AbstractEnumSchema extends AbstractSchema
             return 'string';
         }
 
-        if (((! $enums instanceof AbstractValues) || $this->enums->items === []) && $default === null) {
+        if (((!$enums instanceof AbstractValues) || $this->enums->items === []) && $default === null) {
             return null;
         }
 

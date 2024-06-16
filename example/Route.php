@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace EugeneErg\Example;
 
@@ -12,9 +12,9 @@ class Route extends Group
     public function __construct()
     {
         parent::__construct(
-            Action::get(function (BookController $controller): array {
+            Action::get(static function (BookController $controller): array {
                 return [$controller, 'method'];
-            }, 'test')
+            }, 'test'),
         );
     }
 }

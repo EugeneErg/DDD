@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi\Components;
 
@@ -14,5 +14,16 @@ final readonly class Callbacks
     public function __construct(Paths ...$paths)
     {
         $this->items = $paths;
+    }
+
+    public function toArray(Paths $paths): array
+    {
+        $result = [];
+
+        foreach ($this->items as $name => $callback) {
+            $result[$name] = $callback->toArray();
+        }
+
+        return $result;
     }
 }

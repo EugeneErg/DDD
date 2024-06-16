@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi\Paths;
 
-use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters;
-use EugeneErg\DDD\Domain\Models\Openapi\Components\SecuritySchemes;
+use EugeneErg\DDD\Domain\Models\Openapi\Components;
+use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\Parameters;
 use EugeneErg\DDD\Domain\Models\Openapi\Servers;
 
 final readonly class Path
@@ -41,19 +41,33 @@ final readonly class Path
         $this->parameters = $parameters ?? new Parameters();
     }
 
-    public function toArray(SecuritySchemes $securitySchemes): array
+    /**
+     * @return array{
+     *     get?: array{},
+     *     put?: array{},
+     *     post?: array{},
+     *     delete?: array{},
+     *     options?: array{},
+     *     head?: array{},
+     *     patch?: array{},
+     *     trace?: array{},
+     *     servers?: array{},
+     *     parameters?: array{},
+     * }
+     */
+    public function toArray(Components $components): array
     {
         $result = [];
 
         foreach ($this->methods as $name => $method) {
-            $result[$name] = $method->toArray($securitySchemes);
+            $result[$name] = $method->toArray($components);
         }
 
         if ($this->servers->items !== []) {
             $result['servers'] = $this->servers->toArray();
         }
 
-        if ($this->parameters->items !==  []) {
+        if ($this->parameters->items !== []) {
             $result['parameters'] = $this->parameters->toArray();
         }
 

@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi\Components\Responses;
 
-use EugeneErg\DDD\Domain\Models\Openapi\Components\Headers;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Links;
+use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\Header\Headers;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\RequestBodies\Contents;
 
 final readonly class Response

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Request\Content;
 
@@ -26,6 +26,7 @@ class JsonParser implements ParserInterface
 
     /**
      * @param string $content
+     *
      * @return mixed
      */
     public function fromString(string $content): mixed
@@ -33,7 +34,6 @@ class JsonParser implements ParserInterface
         try {
             return json_decode($content, true, $this->depth, $this->getDecodeFlags());
         } catch (JsonException $exception) {
-
         }
     }
 
@@ -42,7 +42,6 @@ class JsonParser implements ParserInterface
         try {
             return json_encode($content, $this->getEncodeFlags(), $this->depth);
         } catch (JsonException $exception) {
-
         }
     }
 

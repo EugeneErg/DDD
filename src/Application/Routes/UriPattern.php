@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Application\Routes;
 
@@ -9,6 +9,7 @@ class UriPattern
     /**
      * @param string $value
      * @param array<string> $parameters
+     *
      * @return string
      */
     public static function fromString(string $value, array $parameters = []): string
@@ -50,7 +51,7 @@ class UriPattern
      */
     public static function in(array $values): string
     {
-        return implode('|', array_map(fn (string $value): string => static::equal($value), $values));
+        return implode('|', array_map(static fn (string $value): string => static::equal($value), $values));
     }
 
     public static function equal(string $value): string

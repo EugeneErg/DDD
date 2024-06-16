@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi;
 
@@ -16,12 +16,12 @@ final readonly class Paths
         $this->items = $paths;
     }
 
-    public function toArray(Components\SecuritySchemes $securitySchemes): array
+    public function toArray(Components $components): array
     {
         $result = [];
 
         foreach ($this->items as $path) {
-            $result[] = $path->toArray($securitySchemes);
+            $result[] = $path->toArray($components);
         }
 
         return $result;

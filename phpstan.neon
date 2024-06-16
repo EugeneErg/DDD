@@ -1,0 +1,15 @@
+parameters:
+    level: max
+    paths:
+        - 'src/Domain/Models/Openapi'
+    excludePaths:
+        - '*/tests/*'
+        - '*/vendor/*'
+    # Включить строгую проверку типов
+    checkMissingIterableValueType: true
+    checkGenericClassInNonGenericObjectType: true
+    checkUnionTypes: true
+    checkExplicitMixed: true
+    checkMissingTypehints: true
+    inferPrivatePropertyTypeFromConstructor: true
+

@@ -1,14 +1,14 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Application\Requests;
 
 use ReflectionClass;
+use ReflectionNamedType;
 
 abstract class AbstractHeader implements HeadersInterface
 {
-
     public function getTypes(): array
     {
         $reflection = new ReflectionClass(static::class);
@@ -22,7 +22,7 @@ abstract class AbstractHeader implements HeadersInterface
         foreach ($constructor->getParameters() as $parameter) {
             $type = $parameter->getType();
 
-            if (!$type instanceof \ReflectionNamedType) {
+            if (!$type instanceof ReflectionNamedType) {
                 continue;
             }
 

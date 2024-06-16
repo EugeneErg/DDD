@@ -1,14 +1,14 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi\Paths;
 
+use EugeneErg\DDD\Domain\Models\Openapi\Components;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Callbacks;
-use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters;
+use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\Parameters;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\RequestBodies\RequestBody;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Responses;
-use EugeneErg\DDD\Domain\Models\Openapi\Components\SecuritySchemes;
 use EugeneErg\DDD\Domain\Models\Openapi\ExternalDocs;
 use EugeneErg\DDD\Domain\Models\Openapi\Securities;
 use EugeneErg\DDD\Domain\Models\Openapi\Servers;
@@ -37,13 +37,29 @@ final readonly class Method
         public ?ExternalDocs $externalDocs = null,
     ) {
         $this->parameters = $parameters ?? new Parameters();
-        $this->tags = $tags ?? null;
+        $this->tags = $tags ?? new Tags();
         $this->security = $security ?? new Securities();
         $this->servers = $servers ?? new Servers();
         $this->callbacks = $callbacks ?? new Callbacks();
     }
 
-    public function toArray(SecuritySchemes $securitySchemes): array
+    /**
+     * @return array{
+     *     responses: array{},
+     *     summary?: string,
+     *     description?: string,
+     *     operationId?: string,
+     *     deprecated?: true,
+     *     parameters?: array{},
+     *     requestBody?: array{},
+     *     tags?: array{},
+     *     security?: array{},
+     *     servers?: array{},
+     *     callbacks?: array{},
+     *     externalDocs?: array{},
+     * }
+     */
+    public function toArray(Components $components): array
     {
         $result = [
             'responses' => $this->responses->toArray(),
@@ -78,7 +94,7 @@ final readonly class Method
         }
 
         if ($this->security->items !== []) {
-            $result['security'] = $this->security->toArray($securitySchemes);
+            $result['security'] = $this->security->toArray($components->securitySchemes);
         }
 
         if ($this->servers->items !== []) {

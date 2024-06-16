@@ -1,11 +1,10 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\Query;
 
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\Abstract\AbstractSchemaParameter;
-use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\In;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractSchema;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractValue;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractValues;
@@ -13,7 +12,6 @@ use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractValu
 final readonly class SchemaParameter extends AbstractSchemaParameter
 {
     public function __construct(
-        string $name,
         AbstractSchema $schema,
         ?bool $explode = null,
         public bool $allowEmptyValue = false,
@@ -24,7 +22,7 @@ final readonly class SchemaParameter extends AbstractSchemaParameter
         bool $deprecated = false,
         public Style $style = Style::Form,
     ) {
-        parent::__construct($name, In::Query, $schema, $explode ?? $style === Style::Form, $description, $examples, $required, $deprecated);
+        parent::__construct($schema, $explode ?? $style === Style::Form, $description, $required, $deprecated, $examples);
     }
 
     public function toArray(): array

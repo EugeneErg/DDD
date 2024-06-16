@@ -1,11 +1,10 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Request\Collections;
 
 use EugeneErg\DDD\Application\Requests\RequestInterface;
-use Psr\Http\Message\RequestInterface as PsrRequestInterface;
 
 readonly class MapperCallbacks
 {

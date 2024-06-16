@@ -1,23 +1,14 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi;
 
-use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\Abstract\AbstractContentParameter;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\Abstract\AbstractSchemaParameter;
-use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\CookieSchemaParameter;
-use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\Header\AbstractHeaderSchemaParameter;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\Query\SchemaParameter as QuerySchemaParameter;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractConditionSchema;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractEnumSchema;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractValue;
-use EugeneErg\DDD\Domain\Models\Openapi\Components\SecuritySchemes\Oauth2Security\Flows\Scope;
-use EugeneErg\DDD\Domain\Models\Openapi\Components\SecuritySchemes\Oauth2Security\Scheme;
-use EugeneErg\DDD\Domain\Models\Openapi\Paths\Method;
-use EugeneErg\DDD\Domain\Models\Openapi\Tags\Tag;
-use EugeneErg\DDD\Domain\Models\Openapi\Securities\SecuritySchemes;
-use EugeneErg\DDD\Domain\Models\Openapi\Components\SecuritySchemes\AbstractSecurityScheme;
 use StringBackedEnum;
 
 final readonly class Builder
@@ -87,11 +78,11 @@ final readonly class Builder
 
         if ($parameter instanceof AbstractHeaderSchemaParameter) {
             $result = array_replace($result, $this->headerSchemaParameterToArray($parameter));
-        } elseif ($parameter instanceof CookieSchemaParameter) {
+        } elseif ($parameter instanceof SchemaParameter) {
             $result = array_replace($result, $this->cookieSchemaParameterToArray($parameter));
         } elseif ($parameter instanceof QuerySchemaParameter) {
             $result = array_replace($result, $this->querySchemaParameterToArray($parameter));
-        } elseif ($parameter instanceof CookieSchemaParameter) {
+        } elseif ($parameter instanceof SchemaParameter) {
             $result = array_replace($result, $this->pathSchemaParameterToArray($parameter));
         }
 
@@ -196,7 +187,7 @@ final readonly class Builder
     {
     }
 
-    private function cookieSchemaParameterToArray(CookieSchemaParameter $parameter): array
+    private function cookieSchemaParameterToArray(SchemaParameter $parameter): array
     {
     }
 
@@ -204,7 +195,7 @@ final readonly class Builder
     {
     }
 
-    private function pathSchemaParameterToArray(CookieSchemaParameter $parameter): array
+    private function pathSchemaParameterToArray(SchemaParameter $parameter): array
     {
     }
 

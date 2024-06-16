@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Swagger;
 
@@ -16,5 +16,6 @@ final readonly class Info
         public ?string $termsOfService = null,
         public ?Contact $contact = null,
         public ?License $license = null,
-    ) {}
+    ) {
+    }
 }

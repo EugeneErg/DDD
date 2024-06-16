@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi;
 
@@ -16,6 +16,9 @@ final readonly class Securities
         $this->items = $securities;
     }
 
+    /**
+     * @return array<int, array{}>
+     */
     public function toArray(Components\SecuritySchemes $securitySchemes): array
     {
         $result = [];

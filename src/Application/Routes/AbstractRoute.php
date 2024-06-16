@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Application\Routes;
 
@@ -17,11 +17,6 @@ abstract class AbstractRoute implements RouteGroupInterface
         $this->middleware = new Middleware(...$middleware);
     }
 
-    protected function setChildren(RouteInterface ...$routes): void
-    {
-        $this->routes = new Routes(...$routes);
-    }
-
     public function getChildren(): Routes
     {
         return $this->routes;
@@ -35,6 +30,11 @@ abstract class AbstractRoute implements RouteGroupInterface
     public function getUri(): string
     {
         return $this->uri;
+    }
+
+    protected function setChildren(RouteInterface ...$routes): void
+    {
+        $this->routes = new Routes(...$routes);
     }
 
     protected function uriToPattern(string $uri): string

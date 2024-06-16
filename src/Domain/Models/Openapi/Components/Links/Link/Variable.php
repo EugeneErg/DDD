@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi\Components\Links\Link;
 
@@ -15,6 +15,9 @@ final readonly class Variable
     ) {
     }
 
+    /**
+     * @return array{default: mixed, description?: string}
+     */
     public function toArray(): array
     {
         $result = [

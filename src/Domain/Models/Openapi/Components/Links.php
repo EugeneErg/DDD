@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi\Components;
 
@@ -14,5 +14,16 @@ final readonly class Links
     public function __construct(Link ...$links)
     {
         $this->items = $links;
+    }
+
+    public function toArray(): array
+    {
+        $result = [];
+
+        foreach ($this->items as $name => $item) {
+            $result[$name] = $item->toArray();
+        }
+
+        return $result;
     }
 }

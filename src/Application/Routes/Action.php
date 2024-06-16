@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Application\Routes;
 
@@ -28,7 +28,6 @@ abstract readonly class Action implements RouteActionInterface
 
     public function call()
     {
-
     }
 
     public static function post(callable $callback, string $uri = null, ?Middleware $middleware = null): self

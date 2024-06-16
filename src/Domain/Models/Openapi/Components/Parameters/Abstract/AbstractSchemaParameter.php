@@ -1,10 +1,9 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\Abstract;
 
-use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\In;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractSchema;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractValue;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractValues;
@@ -15,8 +14,6 @@ abstract readonly class AbstractSchemaParameter extends AbstractParameter
     public AbstractValues|AbstractValue $examples;
 
     public function __construct(
-        ?string $name,
-        In $in,
         public AbstractSchema $schema,
         public bool $explode = true,
         ?string $description = null,
@@ -24,7 +21,7 @@ abstract readonly class AbstractSchemaParameter extends AbstractParameter
         ?bool $deprecated = false,
         null|AbstractValues|AbstractValue $examples = null,
     ) {
-        parent::__construct($name, $in, $description, $required, $deprecated);
+        parent::__construct($description, $required, $deprecated);
         $this->examples = $examples ?? new Values();
     }
 

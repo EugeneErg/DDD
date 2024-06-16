@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi;
 
@@ -45,7 +45,7 @@ final readonly class Openapi
         }
 
         if ($this->paths->items !== []) {
-            $result['paths'] = $this->paths->toArray($this->components->securitySchemes);
+            $result['paths'] = $this->paths->toArray($this->components);
         }
 
         return $result;

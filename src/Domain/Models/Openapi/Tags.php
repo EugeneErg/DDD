@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi;
 
@@ -16,6 +16,9 @@ final readonly class Tags
         $this->items = $tags;
     }
 
+    /**
+     * @return array<string, array<string>|string>[]
+     */
     public function toArray(): array
     {
         $result = [];

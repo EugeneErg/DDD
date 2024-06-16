@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Tests;
 
@@ -31,7 +31,7 @@ final class YamlTest extends TestCase
             [null, "null\r\n"],
             [true, "true\r\n"],
             [false, "false\r\n"],
-            [new stdClass, "{}\r\n"],
+            [new stdClass(), "{}\r\n"],
             [[], "[]\r\n"],
             [[1,2,3], ''],
             [(object) ['a' => 123, 'b' => 321], ''],

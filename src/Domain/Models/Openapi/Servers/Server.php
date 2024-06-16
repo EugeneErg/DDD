@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi\Servers;
 
@@ -23,6 +23,15 @@ final readonly class Server
         $this->enum = $enum ?? new Strings();
     }
 
+    /**
+     * @return array{
+     *     url: string,
+     *     enum?: string[],
+     *     description?: string,
+     *     default?: string,
+     *     variables?: array{},
+     * }
+     */
     public function toArray(): array
     {
         $result = [
@@ -46,6 +55,5 @@ final readonly class Server
         }
 
         return $result;
-
     }
 }
