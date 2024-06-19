@@ -6,7 +6,6 @@ namespace EugeneErg\DDD\Domain\Models\Openapi\Components;
 
 use EugeneErg\DDD\Domain\Models\Openapi\Components;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\Parameter;
-use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractSchemas;
 
 final readonly class Parameters
 {

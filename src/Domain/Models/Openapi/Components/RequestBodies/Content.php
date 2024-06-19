@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace EugeneErg\DDD\Domain\Models\Openapi\Components\RequestBodies;
 
 use EugeneErg\DDD\Domain\Models\Openapi\Components;
-use EugeneErg\DDD\Domain\Models\Openapi\Components\Headers;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractSchema;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractValue;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractValues;

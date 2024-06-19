@@ -51,6 +51,5 @@ final readonly class Schema extends AbstractConditionSchema
 
     public function toObject(): object
     {
-
     }
 }
