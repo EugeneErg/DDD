@@ -12,6 +12,9 @@ final readonly class License
     ) {
     }
 
+    /**
+     * @return array{name: string, url?: string}
+     */
     public function toArray(): array
     {
         $result = [

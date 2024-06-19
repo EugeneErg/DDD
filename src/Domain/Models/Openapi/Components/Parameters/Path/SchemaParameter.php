@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\Path;
 
+use EugeneErg\DDD\Domain\Models\Openapi\Components;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\Abstract\AbstractSchemaParameter;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractSchema;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractValue;
@@ -24,9 +25,9 @@ final readonly class SchemaParameter extends AbstractSchemaParameter
         parent::__construct($schema, $explode, $description, true, $deprecated, $examples);
     }
 
-    public function toArray(): array
+    public function toObject(Components $components): object
     {
-        $result = array_merge(parent::toArray(), ['style' => $this->style->value]);
+        $result = array_merge((array) parent::toObject($components), ['style' => $this->style->value]);
 
         if ($this->allowEmptyValue) {
             $result['allowEmptyValue'] = $this->allowEmptyValue;
@@ -36,6 +37,6 @@ final readonly class SchemaParameter extends AbstractSchemaParameter
             $result['allowReserved'] = $this->allowReserved;
         }
 
-        return $result;
+        return (object) $result;
     }
 }

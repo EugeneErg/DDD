@@ -12,6 +12,9 @@ final readonly class ExternalDocs
     ) {
     }
 
+    /**
+     * @return array{url: string, description?: string}
+     */
     public function toArray(): array
     {
         $result = ['url' => $this->url];

@@ -8,7 +8,7 @@ use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractValu
 
 final readonly class Value extends AbstractValue
 {
-    public function __construct(string $value)
+    public function __construct(?string $value)
     {
         parent::__construct($value);
     }

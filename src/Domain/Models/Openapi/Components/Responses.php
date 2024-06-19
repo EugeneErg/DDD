@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi\Components;
 
+use EugeneErg\DDD\Domain\Models\Openapi\Components;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Responses\Response;
 
 final readonly class Responses
@@ -13,15 +14,28 @@ final readonly class Responses
 
     public function __construct(Response ...$responses)
     {
+        /** @var array<string, Response> $responses */
         $this->items = $responses;
     }
 
-    public function toArray(): array
+    /**
+     * @return array<string, array{}>
+     */
+    public function toObject(Components $components): array
     {
         $result = [];
 
-        foreach ($this->items as $name => $item) {
-            $result[$name] = $item->toArray();
+        if ($components->responses === $this) {
+            foreach ($this->items as $name => $item) {
+                $result[$name] = $item->toArray($components);
+            }
+        } else {
+            foreach ($this->items as $name => $item) {
+                $searchName = array_search($item, $components->responses->items, true);
+                $result[$name] = $searchName === false
+                    ? $item->toArray($components)
+                    : ['$ref' => '#/components/responses' . $searchName];
+            }
         }
 
         return $result;

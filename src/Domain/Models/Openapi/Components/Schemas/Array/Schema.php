@@ -48,4 +48,9 @@ final readonly class Schema extends AbstractConditionSchema
             $examples,
         );
     }
+
+    public function toObject(): object
+    {
+
+    }
 }

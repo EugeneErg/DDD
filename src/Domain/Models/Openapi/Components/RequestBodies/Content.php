@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi\Components\RequestBodies;
 
+use EugeneErg\DDD\Domain\Models\Openapi\Components;
+use EugeneErg\DDD\Domain\Models\Openapi\Components\Headers;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractSchema;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractValue;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractValues;
@@ -23,20 +25,20 @@ final readonly class Content
         $this->encoding = $encoding ?? new Encodings();
     }
 
-    public function toArray(): array
+    public function toObject(Components $components): object
     {
-        $result = ['schema' => $this->schema->toArray()];
+        $result = ['schema' => $this->schema->toArray($components->schemas)];
 
         if ($this->examples instanceof AbstractValue) {
-            $result['example'] = $this->examples->toArray();
+            $result['example'] = $this->examples->toNative();
         } elseif ($this->examples->items !== []) {
-            $result['examples'] = $this->examples->toArray();
+            $result['examples'] = $this->examples->toObject();
         }
 
         if ($this->encoding->items !== []) {
-            $result['encoding'] = $this->encoding->toArray();
+            $result['encoding'] = $this->encoding->toArray($components->headers);
         }
 
-        return $result;
+        return (object) $result;
     }
 }

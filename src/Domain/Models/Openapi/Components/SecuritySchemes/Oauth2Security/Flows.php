@@ -21,7 +21,12 @@ final readonly class Flows
         public ?ClientCredentialsFlow $clientCredentials = null,
         public ?AuthorizationCodeFlow $authorizationCode = null,
     ) {
-        $this->items[] = array_filter(func_get_args(), static fn (?AbstractFlow $flow) => $flow !== null);
+        $this->items = array_filter([
+            'implicit' => $implicit,
+            'password' => $password,
+            'clientCredentials' => $clientCredentials,
+            'authorizationCode' => $authorizationCode,
+        ], static fn (?AbstractFlow $flow) => $flow !== null);
     }
 
     public static function createImplicit(

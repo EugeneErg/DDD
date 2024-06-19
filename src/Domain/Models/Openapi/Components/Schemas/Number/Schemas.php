@@ -7,7 +7,7 @@ namespace EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Number;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractSchemas;
 
 /**
- * @property <Schema|EnumSchema> $items
+ * @property array<Schema|EnumSchema> $items
  */
 final readonly class Schemas extends AbstractSchemas
 {

@@ -16,7 +16,7 @@ abstract readonly class AbstractConditionSchema extends AbstractSchema
     public AbstractValue|AbstractValues $examples;
 
     public function __construct(
-        string $type,
+        ?string $type,
         ?string $title = null,
         ?string $description = null,
         bool $nullable = false,

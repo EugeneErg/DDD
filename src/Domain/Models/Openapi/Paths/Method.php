@@ -62,7 +62,7 @@ final readonly class Method
     public function toArray(Components $components): array
     {
         $result = [
-            'responses' => $this->responses->toArray(),
+            'responses' => $this->responses->toObject(),
         ];
 
         if ($this->summary !== null) {
@@ -82,7 +82,7 @@ final readonly class Method
         }
 
         if ($this->parameters->items !== []) {
-            $result['parameters'] = $this->parameters->toArray();
+            $result['parameters'] = $this->parameters->toArray($components->parameters);
         }
 
         if ($this->requestBody !== null) {

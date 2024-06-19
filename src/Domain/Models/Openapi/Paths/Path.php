@@ -68,7 +68,7 @@ final readonly class Path
         }
 
         if ($this->parameters->items !== []) {
-            $result['parameters'] = $this->parameters->toArray();
+            $result['parameters'] = $this->parameters->toArray($components->parameters);
         }
 
         return $result;

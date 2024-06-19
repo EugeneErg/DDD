@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi\Components\RequestBodies;
 
+use EugeneErg\DDD\Domain\Models\Openapi\Components\Headers;
+
 final readonly class RequestBody
 {
     public function __construct(
@@ -13,10 +15,17 @@ final readonly class RequestBody
     ) {
     }
 
-    public function toArray(): array
+    /**
+     * @return array{
+     *     content: array{},
+     *     required: bool,
+     *     description?: string,
+     * }
+     */
+    public function toArray(Headers $headers): array
     {
         $result = [
-            'content' => $this->content->toArray(),
+            'content' => $this->content->toArray($headers),
             'required' => $this->required,
         ];
 

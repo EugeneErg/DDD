@@ -8,12 +8,11 @@ use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractEnum
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\Access;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\Xml;
 use EugeneErg\DDD\Domain\Models\Openapi\ExternalDocs;
-use IntBackedEnum;
 
 final readonly class EnumSchema extends AbstractEnumSchema
 {
     public function __construct(
-        IntBackedEnum|Integers $enums,
+        Integers $enums,
         ?string $title = null,
         ?string $description = null,
         bool $nullable = false,

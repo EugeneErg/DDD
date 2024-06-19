@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\Abstract;
 
+use EugeneErg\DDD\Domain\Models\Openapi\Components;
+
 abstract readonly class AbstractParameter
 {
     public function __construct(
@@ -13,7 +15,7 @@ abstract readonly class AbstractParameter
     ) {
     }
 
-    public function toArray(): array
+    public function toObject(Components $components): object
     {
         $result = ['required' => $this->required];
 
@@ -25,6 +27,6 @@ abstract readonly class AbstractParameter
             $result['description'] = $this->description;
         }
 
-        return $result;
+        return (object) $result;
     }
 }

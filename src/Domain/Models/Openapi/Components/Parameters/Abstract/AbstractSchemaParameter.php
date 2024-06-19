@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\Abstract;
 
+use EugeneErg\DDD\Domain\Models\Openapi\Components;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractSchema;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractValue;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractValues;
@@ -25,11 +26,11 @@ abstract readonly class AbstractSchemaParameter extends AbstractParameter
         $this->examples = $examples ?? new Values();
     }
 
-    public function toArray(): array
+    public function toObject(Components $components): object
     {
-        return array_merge(parent::toArray(), [
+        return (object) array_merge((array) parent::toObject($components), [
             'explode' => $this->explode,
-            'schema' => $this->schema->toArray(),
+            'schema' => $this->schema->toObject($components->schemas),
         ]);
     }
 }

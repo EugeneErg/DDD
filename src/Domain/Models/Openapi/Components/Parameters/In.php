@@ -8,6 +8,6 @@ enum In: string
 {
     case Query = 'query';
     case Header = 'header';
-    case path = 'path';
+    case Path = 'path';
     case Cookie = 'cookie';
 }

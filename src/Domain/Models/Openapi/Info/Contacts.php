@@ -18,6 +18,9 @@ final readonly class Contacts
         return $this->name === null && $this->url === null && $this->email === null;
     }
 
+    /**
+     * @return array{name?: string, url?: string, email?: string}
+     */
     public function toArray(): array
     {
         $result = [];

@@ -22,7 +22,7 @@ final readonly class Variable
     {
         $result = [
             'default' => $this->default->value instanceof AbstractValues
-                ? $this->default->value->toArray()
+                ? $this->default->value->toNative()
                 : $this->default->value,
         ];
 

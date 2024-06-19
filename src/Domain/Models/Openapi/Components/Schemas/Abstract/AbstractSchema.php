@@ -21,6 +21,16 @@ abstract readonly class AbstractSchema
     ) {
     }
 
+    /**
+     * @return array<'default'|'description'|'externalDocs'|'nullable'|'readOnly'|'title'|'type'|'writeOnly'|'xml', array{
+     * }|array{
+     *     name?: string,
+     *     namespace?: string,
+     *     prefix?: string,
+     *     attribute?: bool,
+     *     wrapped?: bool
+     * }|bool|float|int|object{}|string|null>
+     */
     public function toArray(): array
     {
         $result = [];
@@ -54,7 +64,7 @@ abstract readonly class AbstractSchema
         }
 
         if ($this->default !== null) {
-            $result['default'] = $this->default->toArray();
+            $result['default'] = $this->default->toNative();
         }
 
         return $result;

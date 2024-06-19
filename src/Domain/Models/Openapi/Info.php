@@ -22,6 +22,16 @@ final readonly class Info
         $this->contacts = $contacts ?? new Contacts();
     }
 
+    /**
+     * @return array{
+     *     title: string,
+     *     version: string,
+     *     description?: string,
+     *     contacts?: array{name?: string, url?: string, email?: string},
+     *     license?: array{name: string, url?: string},
+     *     termsOfService?: string,
+     * }
+     */
     public function toArray(): array
     {
         $result = [

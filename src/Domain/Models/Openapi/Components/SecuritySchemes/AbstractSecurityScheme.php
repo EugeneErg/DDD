@@ -15,6 +15,9 @@ abstract readonly class AbstractSecurityScheme
     ) {
     }
 
+    /**
+     * @return non-empty-array<string, array{}>
+     */
     public function toTargetArray(SecuritySchemes $securitySchemes): array
     {
         $name = array_search($this, $securitySchemes->items);
@@ -26,6 +29,9 @@ abstract readonly class AbstractSecurityScheme
         return [$name => []];
     }
 
+    /**
+     * @return array{type: string, description?: string}
+     */
     public function toArray(): array
     {
         $result = [

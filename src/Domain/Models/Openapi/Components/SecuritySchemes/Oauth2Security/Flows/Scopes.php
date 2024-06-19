@@ -11,6 +11,7 @@ final readonly class Scopes
 
     public function __construct(Scope ...$scopes)
     {
+        /** @var array<string, Scope>$scopes */
         $this->items = $scopes;
     }
 }

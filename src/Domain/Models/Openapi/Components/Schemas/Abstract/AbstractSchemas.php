@@ -14,14 +14,29 @@ abstract readonly class AbstractSchemas
         $this->items = $schemas;
     }
 
-    public function toArray(): array
+    /**
+     * @return array<int, array{}>
+     */
+    public function toArray(self $schemas): array
     {
         $result = [];
 
         foreach ($this->items as $item) {
-            $result[] = $item->toArray();
+            $searchName = array_search($item, $schemas->items, true);
+            $result[] = $searchName === false ? $item->toArray() : ['$ref' => '#/components/schemas/' . $searchName];
         }
 
         return $result;
+    }
+
+    public function toObject(): object
+    {
+        $result = [];
+
+        foreach ($this->items as $name => $item) {
+            $result[$name] = $item->toArray();
+        }
+
+        return (object) $result;
     }
 }

@@ -16,7 +16,7 @@ final readonly class Callbacks
         $this->items = $paths;
     }
 
-    public function toArray(Paths $paths): array
+    public function toArray(): array
     {
         $result = [];
 

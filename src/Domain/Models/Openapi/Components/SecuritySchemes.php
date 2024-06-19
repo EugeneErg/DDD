@@ -13,9 +13,13 @@ final readonly class SecuritySchemes
 
     public function __construct(AbstractSecurityScheme ...$securitySchemes)
     {
+        /** @var array<string, AbstractSecurityScheme> $securitySchemes */
         $this->items = $securitySchemes;
     }
 
+    /**
+     * @return array<string, array{type: string, description?: string}>
+     */
     public function toArray(): array
     {
         $result = [];

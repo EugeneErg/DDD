@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi\Components\RequestBodies;
 
-use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\Header\Headers;
+use EugeneErg\DDD\Domain\Models\Openapi\Components\Headers;
 
 final readonly class Encoding
 {
@@ -18,5 +18,24 @@ final readonly class Encoding
         ?Headers $headers = null,
     ) {
         $this->headers = $headers ?? new Headers();
+    }
+
+    public function toArray(Headers $headers): array
+    {
+        $result = [
+            'explode' => $this->explode,
+            'allowReserved' => $this->allowReserved,
+            'style' => $this->style->value,
+        ];
+
+        if ($this->contentType !== null) {
+            $result['contentType'] = $this->contentType;
+        }
+
+        if ($this->headers->items !== []) {
+            $result['headers'] = $this->headers->toArray($headers);
+        }
+
+        return $result;
     }
 }

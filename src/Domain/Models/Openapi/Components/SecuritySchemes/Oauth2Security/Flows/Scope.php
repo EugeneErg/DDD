@@ -14,12 +14,17 @@ final readonly class Scope
     {
     }
 
+    /**
+     * @param SecuritySchemes $securitySchemes
+     *
+     * @return non-empty-array<string, array{0: string}>
+     */
     public function toTargetArray(SecuritySchemes $securitySchemes): array
     {
         foreach ($securitySchemes->items as $schemeName => $scheme) {
             if ($scheme instanceof Scheme) {
                 foreach ($scheme->flows->items as $scopes) {
-                    $name = array_search($this, $scopes);
+                    $name = array_search($this, $scopes->scopes->items);
 
                     if ($name !== false) {
                         return [$schemeName => [$name]];

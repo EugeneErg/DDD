@@ -4,15 +4,13 @@ declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract;
 
-use BackedEnum;
+use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Object\OpenapiObject;
 use EugeneErg\DDD\Domain\Models\Openapi\ExternalDocs;
-use IntBackedEnum;
-use StringBackedEnum;
 
 abstract readonly class AbstractEnumSchema extends AbstractSchema
 {
     public function __construct(
-        public AbstractValues|BackedEnum $enums,
+        public AbstractValues $enums,
         ?string $title = null,
         ?string $description = null,
         bool $nullable = false,
@@ -35,21 +33,17 @@ abstract readonly class AbstractEnumSchema extends AbstractSchema
         );
     }
 
-    private function getType(array|BackedEnum $enums, ?AbstractValue $default): ?string
+    private function getType(AbstractValues $enums, ?AbstractValue $default): ?string
     {
-        if ($enums instanceof IntBackedEnum) {
-            return 'integer';
-        }
-
-        if ($enums instanceof StringBackedEnum) {
-            return 'string';
-        }
-
-        if (((!$enums instanceof AbstractValues) || $this->enums->items === []) && $default === null) {
+        if ($enums->items === [] && $default === null) {
             return null;
         }
 
-        $firstValue = $default ?? $this->enums->items[array_key_first($this->enums->items)];
+        $firstValue = $default ?? $enums->items[array_key_first($enums->items)];
+
+        if ($firstValue instanceof OpenapiObject) {
+            return 'object';
+        }
 
         if ($firstValue instanceof AbstractValues) {
             return 'array';

@@ -6,13 +6,10 @@ namespace EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Object;
 
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractValues;
 
-/**
- * @property OpenapiObject[] $items
- */
-final readonly class Objects extends AbstractValues
+final readonly class OpenapiObject extends AbstractValues
 {
-    public function __construct(OpenapiObject ...$items)
+    public function toNative(): object
     {
-        parent::__construct(...$items);
+        return (object) parent::toNative();
     }
 }

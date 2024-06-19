@@ -4,7 +4,9 @@ declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi\Components;
 
+use EugeneErg\DDD\Domain\Models\Openapi\Components;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\Parameter;
+use EugeneErg\DDD\Domain\Models\Openapi\Components\Schemas\Abstract\AbstractSchemas;
 
 final readonly class Parameters
 {
@@ -16,14 +18,14 @@ final readonly class Parameters
         $this->items = $parameters;
     }
 
-    public function toArray(): array
+    public function toObject(Components $components): object
     {
         $result = [];
 
         foreach ($this->items as $name => $item) {
-            $result[$name] = $item->toArray();
+            $result[$name] = $item->toObject($components);
         }
 
-        return $result;
+        return (object) $result;
     }
 }

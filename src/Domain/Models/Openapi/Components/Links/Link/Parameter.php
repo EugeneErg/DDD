@@ -14,6 +14,11 @@ final readonly class Parameter
     {
     }
 
+    public function __toString(): string
+    {
+        return $this->value;
+    }
+
     public static function requestPath(string $value): self
     {
         return new self('$request.path.' . $value);

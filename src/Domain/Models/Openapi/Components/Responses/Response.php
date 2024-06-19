@@ -4,8 +4,9 @@ declare(strict_types = 1);
 
 namespace EugeneErg\DDD\Domain\Models\Openapi\Components\Responses;
 
+use EugeneErg\DDD\Domain\Models\Openapi\Components;
+use EugeneErg\DDD\Domain\Models\Openapi\Components\Headers;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\Links;
-use EugeneErg\DDD\Domain\Models\Openapi\Components\Parameters\Header\Headers;
 use EugeneErg\DDD\Domain\Models\Openapi\Components\RequestBodies\Contents;
 
 final readonly class Response
@@ -25,16 +26,24 @@ final readonly class Response
         $this->links = $links ?? new Links();
     }
 
-    public function toArray(): array
+    /**
+     * @return array{
+     *     description: string,
+     *     headers?: array{},
+     *     content?: array{},
+     *     links?: array{},
+     * }
+     */
+    public function toArray(Components $components): array
     {
         $result = ['description' => $this->description];
 
         if ($this->headers->items !== []) {
-            $result['headers'] = $this->headers->toArray();
+            $result['headers'] = $this->headers->toArray($components->headers);
         }
 
         if ($this->content->items !== []) {
-            $result['content'] = $this->content->toArray();
+            $result['content'] = $this->content->toArray($components->headers);
         }
 
         if ($this->links->items !== []) {
